@@ -1,0 +1,243 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "App - Start",
+            "type": "shell",
+            "command": "npm",
+            "args": ["start"],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "App - Start Dev",
+            "type": "shell",
+            "command": "npm",
+            "args": ["run", "start:dev"],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "App - Build",
+            "type": "shell",
+            "command": "npm",
+            "args": ["run", "build"],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "NestJS Generate - Schemantic",
+            "type": "shell",
+            "command": "nest",
+            "args": [
+                "generate",
+                "${input:schemanticSpecOpt}",
+                "${input:schemanticFlatOpt}",
+                "${input:schemantic}",
+                "${input:schemanticName}",
+                "${input:schemanticPath}"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "NestJS Generate - Class",
+            "type": "shell",
+            "command": "nest",
+            "args": [
+                "generate",
+                "--no-spec",
+                "--flat",
+                "class",
+                "${input:schemanticName}",
+                "${input:schemanticPath}"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "NestJS Generate - Controller",
+            "type": "shell",
+            "command": "nest",
+            "args": [
+                "generate",
+                "--no-spec",
+                "--flat",
+                "controller",
+                "${input:schemanticName}",
+                "${input:schemanticPath}"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "NestJS Generate - Service",
+            "type": "shell",
+            "command": "nest",
+            "args": [
+                "generate",
+                "--no-spec",
+                "--flat",
+                "service",
+                "${input:schemanticName}",
+                "${input:schemanticPath}"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "TypeORM Generate - Entity",
+            "type": "shell",
+            "command": "npm",
+            "args": [
+                "run",
+                "typeorm",
+                "--",
+                "entity:create",
+                "src/db/entities/${input:schemanticName}"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "NestJS Generate - Module",
+            "type": "shell",
+            "command": "nest",
+            "args": [
+                "generate",
+                "--no-spec",
+                "--flat",
+                "module",
+                "${input:schemanticName}"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "Migration - Run",
+            "type": "shell",
+            "command": "npm",
+            "args": ["run", "migration:run"],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "Migration - Update migrations table",
+            "type": "shell",
+            "command": "npm",
+            "args": ["run", "migration:dump"],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "Migration - Revert",
+            "type": "shell",
+            "command": "npm",
+            "args": ["run", "migration:revert"],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "Migration - Generate",
+            "type": "shell",
+            "command": "npm",
+            "args": [
+                "run",
+                "migration:generate",
+                "--",
+                "database/migrations/${input:migrationName}"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": [],
+            "group": "build"
+        }
+    ],
+    "inputs": [
+        {
+            "type": "promptString",
+            "id": "migrationName",
+            "description": "Name of the migration"
+        },
+        {
+            "type": "promptString",
+            "id": "schemantic",
+            "description": "Schemantic to generate (interceptor, middleware, provider, interface, etc...)",
+            "default": "provider"
+        },
+        {
+            "type": "promptString",
+            "id": "schemanticName",
+            "description": "Name of the generated",
+            "default": "name"
+        },
+        {
+            "type": "promptString",
+            "id": "schemanticPath",
+            "description": "Path to the generated",
+            "default": "."
+        },
+        {
+            "type": "promptString",
+            "id": "schemanticSpecOpt",
+            "description": "Avoid spec generation (Use --spec to generate)",
+            "default": "--no-spec"
+        },
+        {
+            "type": "promptString",
+            "id": "schemanticFlatOpt",
+            "description": "Enfore flat structure (Use --no-flat to generate directories)",
+            "default": "--flat"
+        }
+    ]
+}
